@@ -1,0 +1,28 @@
+#nav{
+    text-align: center;
+
+}
+
+h1{
+    color: yellow;
+    text-align: center;
+}
+
+body{
+    background-color: rgb(39, 40, 41);
+}
+
+#moviesList{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5% 5%;
+    justify-content: space-around;
+}
+
+article{
+    width: 300px;
+    margin: 1%;
+    background-color: rgb(185, 179, 179);
+    text-align: center;
+    
+}
