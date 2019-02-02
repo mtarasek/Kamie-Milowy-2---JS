@@ -1,15 +1,19 @@
 #nav{
     text-align: center;
-
+    margin: 0 auto;
+    width: 50%;
 }
 
 h1{
     color: yellow;
     text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2rem;
 }
 
 body{
-    background-color: rgb(39, 40, 41);
+    background-color: rgb(121, 127, 156);
+    position: relative;
 }
 
 #moviesList{
@@ -22,7 +26,96 @@ body{
 article{
     width: 300px;
     margin: 1%;
-    background-color: rgb(185, 179, 179);
+    background-color: rgb(92, 110, 124);
     text-align: center;
-    
+    padding: 20px;    
+}
+
+img{
+    width: 200px;
+    height: 300px;
+}
+
+label{
+    width: 100%;
+    display: block;
+}
+
+#detailsImage{
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+.hiddenDetails {
+    display: none;
+}
+
+#movieDetails{
+    border: solid 3px black;
+    width: 50%;
+    margin: 0 auto;
+    position: fixed;
+    background-color: rgb(131, 145, 131);
+    left: 25%;
+    margin: 20px;
+    overflow: auto;
+    max-height: 80%;
+}
+
+#closePopup {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+}
+
+#popoupWindow {
+    background-color: rgb(61, 60, 60, 0.6);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#form{
+    width: 50%;
+    margin-top: 5%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #555353;
+}
+
+.formInput, #movie {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+#add{
+    width: 100%;
+    background-color: green;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    color: white;
+    height: 30px;
+}
+
+#searchMovie{
+    width: 20%;
+    background-color: rgb(36, 37, 36);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    color: white;
+    height: 30px;
+    margin-top: 4%;
 }

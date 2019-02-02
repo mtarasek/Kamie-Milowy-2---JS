@@ -19,12 +19,42 @@
     </section>
 
     <section id="nav">
-        <input type="text" id="movie" />
+        <input type="text" id="movie" onkeyup="showMovie()" /><br />
         <button type="button" id="searchMovie" onclick="showMovie()">Szukaj</button>
     </section>
 
+    <div id="popoupWindow" class="hiddenDetails">
+        <section id="movieDetails">
+            <span id="closePopup">x</span>
+            <label>Tytu filmu: <span id="detailsTitle"></span></label><br />
+            <label>Rok produkcji: <span id="detailsYear"></span></label><br />
+            <label>Ocena: <span id="detailsRate"></span></label><br />
+            <label>Obsada: <span id="detailsCast">
+                    <ul id="authorsList"></ul>
+                </span> </label><br />
+            <label>Rodzaj: <span id="detailsGenres">
+                    <ul id="genresList"></ul>
+                </span></label><br />
+            <label>Opis: <span id="detailsDescription"></span></label><br />
+            <label><img id="detailsImage" /></label><br />
+        </section>
+    </div>
+
+    <section id="form">
+        <form>
+            <label>Tytuł filmu <input type="text" id="title" class="formInput" /></label><br />
+            <label>Rok produkcji <input type="number" id="year" min="1000" max="2019" class="formInput" /></label><br />
+            <label>Ocena <input type="number" id="rate" min="1" max="10" step="0.1" class="formInput" /></label><br />
+            <label>Obsada <input type="text" id="cast" class="formInput" /></label><br />
+            <label>Rodzaj <input type="text" id="genres" class="formInput" /></label><br />
+            <label>Opis <input type="text" id="description"  class="formInput"/></label><br />
+            <label>Zdjęcie <input type="text" id="image" class="formInput"  /></label><br />
+            <button type="button" id="add" onclick="addMovie()">Dodaj</button>
+        </form>
+    </section>
+
     <section id="moviesList">
-        
+
     </section>
 </body>
 
