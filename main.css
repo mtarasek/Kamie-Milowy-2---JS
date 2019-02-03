@@ -46,18 +46,17 @@ label{
     margin: 0 auto;
 }
 
-
-
 .hiddenDetails {
     display: none;
 }
+
 
 #movieDetails{
     border: solid 3px black;
     width: 50%;
     margin: 0 auto;
     position: fixed;
-    background-color: rgb(131, 145, 131);
+    background-color: rgb(73, 75, 73);
     left: 25%;
     margin: 20px;
     overflow: auto;
@@ -71,14 +70,14 @@ label{
 }
 
 #popoupWindow {
-    background-color: rgb(61, 60, 60, 0.6);
+    background-color: rgba(143, 135, 135, 0.6);
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
 }
 
-#form{
+#newMovieSection{
     width: 50%;
     margin-top: 5%;
     padding: 20px;
@@ -95,7 +94,7 @@ label{
     border: none;
 }
 
-#add{
+#add, #editButton{
     width: 100%;
     background-color: green;
     border-radius: 5px;
@@ -118,4 +117,8 @@ label{
     color: white;
     height: 30px;
     margin-top: 4%;
+}
+
+#add.hiddenButton, #editButton.hiddenButton{
+    display: none;
 }

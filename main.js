@@ -18,7 +18,6 @@ window.onload = function () {
             searchMovie();
         }
     });
-
 }
 
 downloadData();
@@ -34,10 +33,45 @@ function downloadData() {
         })
         .then(respJson => {
             myMoviesTab = respJson;
-            generateAllMovies(respJson);
+            generateAllMovies(myMoviesTab);
 
         })
         .catch(error => alert('Wystąpił błąd z połączeniem'))
+}
+
+function editMovie() {
+
+    var editMovie = {
+        title: $('#title').val(),
+        year: $('#year').val(),
+        rate: $('#rate').val(),
+        cast: $('#cast').val().split(','),
+        genres: $('#genres').val().split(','),
+        description: $('#description').val(),
+        imgSrc: $('#image').val()
+    };
+
+    var movieid = $('#newMovieForm').data().id;
+    console.log(editMovie);
+    fetch(BASE_URL + '/api/movie/' + movieid, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(editMovie)
+    })
+        .then(resp => {
+            if (resp.ok) {
+                downloadData();
+            }
+        })
+        .catch(error => {
+            alert('nie udało się zedytować')
+        })
+
+    $('.formInput').val('');
+    $('#editButton').addClass('hiddenButton');
+    $('#add').removeClass('hiddenButton');
 }
 
 function generateAllMovies(allMovies) {
@@ -51,7 +85,8 @@ function generateAllMovies(allMovies) {
         ${movie.year}<br /> Ocena: 
          ${movie.rate}<br /> 
          <img src="${movie.imgSrc}" /> <br />
-         <button class="delete-movie" data-movieId="${movie.id}">Delete</button><br />
+         <button class="delete-movie" data-movieId="${movie.id}">Usuń</button><br />
+         <button class="edit-movie" data-movieId="${movie.id}">Edytuj</button><br />
         </article > `
 
     }
@@ -62,7 +97,7 @@ function generateAllMovies(allMovies) {
         event.stopPropagation();
         var $deleteButton = $(this);
         var buttonData = $deleteButton.data();
-        console.log(buttonData);
+
 
         fetch(BASE_URL + '/api/movie/' + buttonData.movieid, {
             method: 'DELETE',
@@ -82,6 +117,38 @@ function generateAllMovies(allMovies) {
                 alert('Wystąpił błąd połączenie, spróbuj ponownie później');
             })
     });
+
+    $('.edit-movie').on('click', function (event) {
+        event.stopPropagation();
+        var $editMovie = $(this);
+        var movieData = $editMovie.data();
+
+        fetch(BASE_URL + '/api/movie/' + movieData.movieid)
+            .then(resp => {
+                return resp.json();
+            })
+            .then(movieDetails => {
+                $('#newMovieForm').attr('data-id', movieData.movieid);
+                fillEditData(movieDetails);
+                $('html').animate({ scrollTop: 0 }, 'slow');
+            })
+
+        
+        $('#editButton').removeClass('hiddenButton');
+        $('#add').addClass('hiddenButton');
+    })
+
+    function fillEditData(movieDetails) {
+        var $form = $('#newMovieForm');
+        $form.find('#title').val(movieDetails.title);
+        $form.find('#year').val(movieDetails.year);
+        $form.find('#rate').val(movieDetails.rate);
+        $form.find('#cast').val(movieDetails.cast);
+        $form.find('#genres').val(movieDetails.genres);
+        $form.find('#description').val(movieDetails.description);
+        $form.find('#image').val(movieDetails.imgSrc);
+    }
+
 
     $('article').on('click', function () {
         var $article = $(this);
@@ -142,7 +209,6 @@ function searchMovie(allMovies) {
 function addMovie() {
     createMovie();
     $('.formInput').val('');
-
 }
 
 function createMovie() {
@@ -163,7 +229,7 @@ function createMovie() {
     }
 
     fetch("https://us-central1-itfighters-movies.cloudfunctions.net/api/movie", {
-        method: 'post',
+        method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8'
         },
